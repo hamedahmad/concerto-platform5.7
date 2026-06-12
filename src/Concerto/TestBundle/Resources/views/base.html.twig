@@ -17,6 +17,10 @@
                 src="{{ asset('bundles/concertotest/angularjs/bower_components/angular/angular.min.js?v=' ~ version) }}"></script>
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/bower_components/angular-sanitize/angular-sanitize.min.js?v=' ~ version) }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/concertopanel/files/js/ifbq_globals.js?v=' ~ version) }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/concertopanel/files/js/Keyboard.js?v=' ~ version) }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/concertopanel/files/js/Tastatur.js?v=' ~ version) }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/concertopanel/files/js/ifbq_app.js?v=' ~ version) }}"></script>
 
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/app/js/app.js?v=' ~ version) }}"></script>
@@ -26,7 +30,7 @@
                 src="{{ asset('bundles/concertotest/angularjs/app/js/directives/concerto_test_directive.js?v=' ~ version) }}"></script>
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/bower_components/angular-file-upload/angular-file-upload.min.js?v=' ~ version) }}"></script>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/concertotest/favicon.ico') }}" />
     {% endblock %}
 </head>
 <body ng-app="testRunner" ng-cloak>
