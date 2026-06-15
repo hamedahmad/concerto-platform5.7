@@ -1,0 +1,112 @@
+
+/* Aufgabenbeispiel */
+
+.aufgabenbeispiel {
+    background-color: #eee;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Wortmarkierung */
+
+.wortmarkierung, .wortmarkierung-beispiel {
+    background-color:#D6EBFF;
+    position: relative;
+    padding: 5px;
+    border: 1px dotted #003063;
+    font-weight: bold;
+    color: #003063;
+}
+
+
+
+
+
+
+/* noch nicht einsortiert */
+
+/* .highlight, .highlight-example {
+    background-color:#D6EBFF;
+    position: relative;
+    padding: 5px;
+    border: 1px dotted #003063;
+    font-weight: bold;
+
+
+} */
+
+
+
+/* .beispielKorrektur span {
+    padding: .25em;
+    border: 1px solid black;
+    background-color: white;
+} */
+
+/* .beispielKorrektur::before {
+    content: "Korrektur: ";
+    font-weight: bold;
+} */
+
+
+/* .aufgabentext {
+    color: #003063;
+    position: relative;
+} */
+
+/*  .aufgabentext input {
+    font-size: 1em;
+} 
+ */
+
+
+/* .aufgabentext ::selection {
+    color: none;
+    background: none;
+} */
+
+/* For Mozilla Firefox */
+/* .aufgabentext ::-moz-selection {
+    color: none;
+    background: none;
+} */
+
+/* .editZeile {
+    width: 100%;
+    border: 0;
+} */
+
+/* .editWord {
+
+   width: 100px; 
+  height: 0;
+   width: 0; 
+   opacity: 0; 
+  display: none; 
+} */
+/* 
+.korrekturzeile {
+    width: 100%;
+} */
+
+/* .aufgabentext input:checked + .editWord {
+    height: auto;
+    width: 100px; 
+    opacity: 1;
+    display: inline;
+    margin-right: 5px;
+} */
+
+/* input[type="checkbox"] {
+    
+    display: none;
+} */
+
+/* .korrekturzeile::before {
+     content: "Korrektur: ";
+    font-weight: bold;
+} */
+
+/* .korrekturzeile {
+    background-color: #f4f9ff;
+} */

@@ -1,0 +1,64 @@
+
+/* Aufgabenbeispiel */
+
+.aufgabenbeispiel {
+    background-color: #eee;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Wortmarkierung */
+
+.wortmarkierung, .wortmarkierung-beispiel {
+
+    position: relative;
+    border-bottom: 2px dashed red;
+    font-weight: bold;
+    color: red;
+    text-decoration: line-through;
+}
+
+.wortmarkierung::before {
+    content: "(";
+}
+
+.wortmarkierung::after {
+    content: ")";
+}
+
+/* Korrekturen */
+
+.editWord {
+
+    width: 100px; 
+    height: 0;
+    width: 0; 
+    opacity: 0; 
+    display: none; 
+ }
+
+
+.text_edit_block input[type="checkbox"] {
+    display: none;
+}
+
+.text_edit_block input:checked + .editWord {
+	height: auto;
+	width: auto;
+	opacity: 1;
+	display: inline;
+}
+
+
+.korrekturzeile {
+    width: 100%;
+}  
+
+.korrekturzeile::before {
+     content: "Korrektur: ";
+    font-weight: bold;
+}  
+
+  .korrekturzeile {
+    background-color: #f4f9ff;
+}  

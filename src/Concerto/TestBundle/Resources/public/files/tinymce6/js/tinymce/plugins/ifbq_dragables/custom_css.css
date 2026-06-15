@@ -1,0 +1,24 @@
+/***custom_css.css**/
+.dragable{
+	width:fit-content !important;
+	height:fit-content !important;
+  	border:1px gray dashed !important;
+  	border-radius:3px !important;
+  	overflow: auto !important;
+	min-height: 15px;
+	min-width:  15px;
+}
+
+.dragable p {
+    margin: 0 !important;
+}
+
+.ablageziel {
+    border: 1px dashed black;
+    position: relative;
+    display: inline-block;
+    min-width: 25px !important;
+    min-height: 25px !important;
+    position: relative;
+	display: inline-block;
+}

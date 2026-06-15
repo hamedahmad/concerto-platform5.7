@@ -1,0 +1,327 @@
+.flexible ,.single-input {
+    border: dotted 1px #e6e6e6;
+    border-bottom: solid 1px #7d7d7d;
+    vertical-align: middle;
+    font-size: 17px;
+	height: 17px;
+	padding: 3px;
+}
+
+.single-input {
+    width: 450px;
+}
+
+.lbl_mix{
+	display: inline-block;
+    float: left;
+    margin-right: 5px;
+}
+
+.button-group li {
+  display: table-cell;
+  text-align: center;
+  padding: 5px;
+}
+.button-group li button {
+  width: 100%;
+}
+
+.hand-image{
+    width: 65px;
+    vertical-align: middle;
+    padding-bottom: 0;
+	margin-right:25px;
+}
+/************************************************************/
+
+#actionContainer{ 
+
+	margin-top:15px; 
+}
+ 
+#content, .flip-container,.front,.back {
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+	margin: auto;
+	margin-top: 22px;
+	width: 927px;
+	padding: 0px 13px 25px 13px;
+	height: auto;
+	color: #646262;
+	position: relative;
+	z-index: 1;
+}
+
+.flipper {
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    position: relative;
+}
+
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+	background-color:white;
+	box-shadow: 1px 5px 10px 1px grey;
+    position: relative;
+  	padding-top: 13px;
+    top: 0;
+    left: 0;
+	min-height: 100vh;
+}
+
+.back {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.flip-container.hover .back {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.flip-container.hover .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.front {
+    z-index: 2;
+}
+
+/**************************************************************************************/
+.halpdivlinks , .halpdivrechts{
+  	position: relative;
+    width: calc(50% - 5px);
+}
+
+.halpdivlinks{
+    float: left;
+}
+
+.halpdivrechts{
+    float: right;
+    padding-left: 5px;
+    border-left: 1px #dedede solid;
+}
+
+.normalcontainer{
+    overflow: auto;
+    background-color: white;
+    box-shadow: 1px 5px 10px 1px grey;
+    padding-top: 13px !important;
+    margin-top: 0 !important;
+}
+/*****************************************************/
+
+.nolist{
+	list-style: none;
+}
+
+ol {
+  list-style: none;
+  counter-reset: li
+}
+
+ol li::before {
+  content: counter(li);
+  color: #00000075;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em
+}
+ol li {counter-increment: li}
+
+.oneline::before {
+  content: unset !important;
+}
+
+.special-list ol{
+	counter-reset: listStyle;
+}
+
+.special-list ol li{
+	list-style-type: none;
+    counter-increment: listStyle;
+   position: relative;
+    margin-bottom:13px;
+}
+
+.special-list ol li:before {
+    content: counter(listStyle, upper-alpha);
+    position: absolute;
+    top: calc(50% - 11px);
+    bottom: 0;
+    left: -13px;
+    vertical-align: middle;
+    margin: 0;
+}
+/*****************************************************/
+/***********************************************SWITCH****************************************************/
+#content, .flip-container,.front,.back {
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-o-perspective: 1000;
+	perspective: 1000;
+	margin: auto;
+	margin-top: 22px;
+	width: 927px;
+	padding: 0px 13px 25px 13px;
+	height: auto;
+	color: #646262;
+	position: relative;
+	z-index: 1;
+}
+
+.flipper {
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    position: relative;
+}
+
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+	background-color:white;
+	box-shadow: 1px 5px 10px 1px grey;
+    position: relative;
+  	padding-top: 13px;
+    top: 0;
+    left: 0;
+}
+
+.back {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.front {
+    z-index: 2;
+}
+
+.flip-container.hover .back {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.flip-container.hover .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+/*************************************************************/
+
+.check-box-list{
+    margin-bottom: 10px;
+}
+
+.check-box-list label {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.check-box-list li{
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: 0;
+    margin-bottom: 7px;
+}
+
+.check-box-table td {
+    position: relative;
+    height: 30px;
+}
+
+.box-cell-table{
+     border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.box-cell-table td{
+    border: #000000 solid 1px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.box-cell-div{
+ width:100%;
+}
+
+.box-cell-div span{
+    border: #000000 solid 1px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 1px;
+    width: 79px;
+    display: inline-table;
+}
+
+.box-cell-div inpu,.single-inputt{
+    width: 79px;
+    height: 18px;
+    padding: 0;
+    border: 1px solid darkgrey;
+}
+
+#loaderdiv{
+	background-color: #5d5b5b66;
+	width: 100%;
+	position: fixed;
+	height: 100%;
+	z-index: 100;
+}

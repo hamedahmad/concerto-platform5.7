@@ -1,0 +1,215 @@
+#MainTable {
+	height:100%;
+    width:100%;
+    margin: 0;
+    border: 0;
+    display: contents;
+}
+
+.hauptfrage{
+	margin-bottom: 25px;
+    display: block;
+}
+
+#var_table{
+	min-height:calc(100% -100px);
+}
+
+#var_table tr td {
+  	width:50px;
+    padding: 1px;
+    text-align: center;
+}
+
+#var_table tr td:first-child {
+  	max-width:20px;
+}
+
+
+#var_table button {
+    background-color: unset;
+    border: 0 none;
+    color: #5b6d38;
+    font-family: "Roboto";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 100;
+    padding: 3px;
+}
+
+table.dataTable tbody td.select-checkbox, table.dataTable tbody th.select-checkbox {
+    position: relative;
+    cursor:pointer;
+}
+
+table.table td, table.table th {
+    padding-top: 1.1rem;
+    padding-bottom: 1rem;
+}
+
+table.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+  
+}
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before {
+    content: ' ';
+    margin-left: -4px;
+    border: 1px solid #000;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+table.dataTable tbody td.select-checkbox:after, table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:after, table.dataTable tbody th.select-checkbox:before {
+    display: block;
+    position: absolute;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected td.select-checkbox:after {
+    content: '\2714';
+    margin-left: -4px;
+    text-align: center;
+    text-shadow: 1px 1px #B0BED9, -1px -1px #B0BED9, 1px -1px #B0BED9, -1px 1px #B0BED9;
+}
+table.dataTable tbody td.select-checkbox:after, table.dataTable tbody td.select-checkbox:before, table.dataTable tbody td.select-checkbox:after, table.dataTable tbody td.select-checkbox:before {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
+    background-color: #B0BED9;
+}
+
+.dataTables_paginate{
+    width: 100%;
+    background-color: #333;
+    text-align: center !important;
+}
+
+.dataTables_paginate a{
+	color:white;
+}
+
+.dataTables_paginate a:hover{
+	color:#b0bed9;
+}
+.dataTables_info{
+    background-color:#cccfff;
+    text-align: center !important;
+}
+table.dataTable {
+    clear: both;
+    margin-top: 6px !important;
+    margin-bottom: 15px !important;
+    max-width: none !important;
+    border-collapse: separate !important;
+}
+.btn_edit,.btn_view{ cursor:pointer; }
+.input-group {
+    position: relative;
+    display: flex;
+    border-collapse: separate;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;6bba05692a2c4af220e765c5b7405657 91df932d539475c3c3b07ee45047fc961d020bf7
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group-prepend {
+    margin-right: -1px;
+}
+.input-group-append, .input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+#test-wrapper {
+    width: 1024px;
+    margin: 0 auto;
+    background-color: #E7E7E7;
+    font-family: Helvetica, Arial, sans-serif;
+    min-height: 100%;
+}
+
+/****************************************************************************************************/
+.radiobtn {
+	position: relative;
+    padding: 0;  
+}
+
+@-webkit-keyframes blink {
+  0% {
+    background-color: #b9d979;
+  }
+  10% {
+    background-color: #b9d979db;
+  }
+  11% {
+    background-color: #b9d979a6;
+  }
+  29% {
+    background-color: #b9d97966;
+  }
+  30% {
+    background-color: #b9d97947;
+  }
+  50% {
+    background-color: #b9d97924;
+  }
+  45% {
+    background-color: #b9d9790f;
+  }
+  50% {
+    background-color: #b9d97900;
+  }
+  100% {
+    background-color: #b9d97900;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background-color: #b9d979;
+  }
+  10% {
+    background-color: #b9d979db;
+  }
+  11% {
+    background-color: #b9d979a6;
+  }
+  29% {
+    background-color: #b9d97966;
+  }
+  30% {
+    background-color: #b9d97947;
+  }
+  50% {
+    background-color: #b9d97924;
+  }
+  45% {
+    background-color: #b9d9790f;
+  }
+  50% {
+    background-color: #b9d97900;
+  }
+  100% {
+    background-color: #b9d97900;
+  }
+}
+
+div.dataTables_filter 
+{
+  width: 366px;
+}
+
+div.dataTables_filter label{
+	display: inline-block;
+  margin-right:17px;
+}

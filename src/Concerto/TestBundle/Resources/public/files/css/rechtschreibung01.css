@@ -1,0 +1,12 @@
+.wortmarkierung, .wortmarkierung-example {
+	background-color: #D6EBFF;
+	position: relative;
+    padding: 3px 0px 1px 0px;
+	border: 1px dotted #003063;
+	font-weight: bold;
+}
+
+.satz-block:hover
+{
+    /*font-size:x-large;*/
+}
