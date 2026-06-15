@@ -1,13 +1,13 @@
 FROM php:8.2-fpm
 
-MAINTAINER Hamed Ahmad <hamed.ahmad@agmail.com>
-
-ARG CRAN_MIRROR=https://cloud.r-project.org/
+LABEL maintainer="Hamed Ahmad <hamed.ahmad@agmail.com>"
 
 RUN apt-get update -y && apt-get install -y \
     cron \
     curl \
     git \
+    pkg-config \
+    libzip-dev \
     libcurl4-openssl-dev \
     libmariadb-dev \
     libxml2-dev \
@@ -29,17 +29,9 @@ RUN apt-get update -y && apt-get install -y \
     xml \
     zip
 
-
 COPY . /usr/src/concerto/
 
-# install composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
 WORKDIR /usr/src/concerto
-
-# install dependencies (already defined in composer.json)
-RUN composer install --no-interaction --prefer-dist --no-scripts
-
 
 COPY build/php.ini /usr/local/etc/php/php.ini
 COPY build/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -49,15 +41,10 @@ RUN chmod +x /usr/src/concerto/bin/console \
  && rm -f /etc/nginx/sites-enabled/default \
  && ln -s /etc/nginx/sites-available/concerto.conf /etc/nginx/sites-enabled/concerto.conf
 
+ RUN mkdir -p /usr/src/concerto/var/cache /usr/src/concerto/var/logs \
+ && chown -R www-data:www-data /usr/src/concerto/var \
+ && chmod -R 775 /usr/src/concerto/var
+
 EXPOSE 80
 
-WORKDIR /usr/src/concerto
-
-CMD rm -rf var/cache/* \
- && php bin/console concerto:setup || true \
- && php bin/console concerto:r:cache || true \
- && php bin/console cache:warmup --env=prod || true \
- && chown -R www-data:www-data var \
- && service nginx start \
- && cron \
- && php-fpm -F
+CMD ["sh", "-c", "service nginx start && php-fpm -F"]
