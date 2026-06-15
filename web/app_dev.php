@@ -1,4 +1,4 @@
-<?php
+<?php error_reporting(E_ALL & ~E_DEPRECATED & ~E_WARNING);
 
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;

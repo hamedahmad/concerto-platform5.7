@@ -2,22 +2,24 @@ version: '3.0'
 services:
     database:
       image: mysql:5.7
-      container_name: database
+      container_name: database_26
       restart: unless-stopped
       ports:
         - "3306:3306"
       environment:
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DATABASE=concerto
-        - TZ=Europe/London
+        - TZ=Europe/Berlin
       volumes:
         - ./database/mysql:/var/lib/mysql
         - ./database/conf/mysqld.cnf:/etc/mysql/conf.d/mysqld.cnf
         - ./logs/database:/var/log/mysql
+      depends_on:
+        - database_26
 
     concerto:
       build: ./concerto
-      image: campsych/concerto-platform:latest
+      image: hamedahmad/concerto-platform5.7:latest
       container_name: concerto
       restart: unless-stopped
       volumes:
@@ -41,4 +43,4 @@ services:
         - ./logs/concerto/app:/usr/src/concerto/var/logs
         - ./logs/concerto/sessions:/usr/src/concerto/src/Concerto/TestBundle/Resources/sessions
       ports:
-        - "80:80"
+        - "8090:80"
