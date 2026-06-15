@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestWizardStepRepository")
  * @UniqueEntity(fields={"wizard","title"}, message="validate.test.wizards.steps.unique")
  */
+#[\AllowDynamicProperties]
 class TestWizardStep extends AEntity implements \JsonSerializable {
 
     /**

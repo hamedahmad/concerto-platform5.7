@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\DataTableRepository")
  * @UniqueEntity(fields="name", message="validate.table.name.unique")
  */
+#[\AllowDynamicProperties]
 class DataTable extends ATopEntity implements \JsonSerializable {
 
     /**

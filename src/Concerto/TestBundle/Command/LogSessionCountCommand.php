@@ -26,6 +26,7 @@ class LogSessionCountCommand extends Command {
 
     protected function execute(InputInterface $input, OutputInterface $output) {
         $this->sessionCountService->updateCountRecord();
+        return 0;
     }
 
 }

@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\RoleRepository")
  */
+#[\AllowDynamicProperties]
 class Role extends \Symfony\Component\Security\Core\Role\Role {
     
     /**

@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Repository\AEntityRepository;
 /**
  * ViewTemplateRepository
  */
+#[\AllowDynamicProperties]
 class ViewTemplateRepository extends AEntityRepository {
 
     public function findOneByName($name) {

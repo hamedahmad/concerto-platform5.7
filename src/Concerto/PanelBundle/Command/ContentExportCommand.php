@@ -99,6 +99,7 @@ class ContentExportCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->exportStarterContent($input, $output);
+        return 0;
     }
 
 }

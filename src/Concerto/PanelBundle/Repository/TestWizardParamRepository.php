@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * TestWizardParamRepository
  */
+#[\AllowDynamicProperties]
 class TestWizardParamRepository extends AEntityRepository {
 
     public function deleteByTestWizard($wizard_id) {

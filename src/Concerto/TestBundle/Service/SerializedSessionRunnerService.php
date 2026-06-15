@@ -10,6 +10,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Process\Process;
 
+#[\AllowDynamicProperties]
 class SerializedSessionRunnerService extends ASessionRunnerService
 {
     private $environment;

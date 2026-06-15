@@ -93,6 +93,7 @@ class ContentImportCommand extends Command
         }
 
         $this->importStarterContent($input, $output, $user);
+        return 0;
     }
 
 }

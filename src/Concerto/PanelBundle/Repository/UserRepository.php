@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Entity\User;
 /**
  * UserRepository
  */
+#[\AllowDynamicProperties]
 class UserRepository extends AEntityRepository {
 
     public function findAllExcept(User $user) {

@@ -6,6 +6,7 @@ use Concerto\PanelBundle\Repository\TestSessionRepository;
 use Concerto\TestBundle\Entity\TestSessionCount;
 use Concerto\TestBundle\Repository\TestSessionCountRepository;
 
+#[\AllowDynamicProperties]
 class TestSessionCountService
 {
     private $sessionRepo;

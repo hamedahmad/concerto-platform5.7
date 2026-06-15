@@ -9,6 +9,7 @@ use DateTime;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\TestBundle\Repository\TestSessionCountRepository") 
  */
+#[\AllowDynamicProperties]
 class TestSessionCount implements \JsonSerializable {
 
     /**

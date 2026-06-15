@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Repository\TestSessionLogRepository;
 use Concerto\PanelBundle\Security\ObjectVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+#[\AllowDynamicProperties]
 class TestSessionLogService extends ASectionService
 {
 

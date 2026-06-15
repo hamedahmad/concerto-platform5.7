@@ -1,0 +1,19 @@
+1- Bevor Installation
+
+muss das in Terminal eingerichtet
+
+
+sudo apt install php-xml
+
+composer require doctrine/annotations:^1.13 doctrine/cache:^1.11 twig/twig:^2.15 -W --no-audit --no-scripts
+
+sudo apt install php-xml
+
+``
+
+2- 
+
+2- Nach installation
+
+php bin/console cache:clear || true
+php bin/console cache:warmup || true

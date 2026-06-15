@@ -29,7 +29,18 @@ RUN apt-get update -y && apt-get install -y \
     xml \
     zip
 
+
 COPY . /usr/src/concerto/
+
+# install composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /usr/src/concerto
+
+# install dependencies (already defined in composer.json)
+RUN composer install --no-interaction --prefer-dist --no-scripts
+
+
 COPY build/php.ini /usr/local/etc/php/php.ini
 COPY build/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY build/nginx/concerto.conf /etc/nginx/sites-available/concerto.conf

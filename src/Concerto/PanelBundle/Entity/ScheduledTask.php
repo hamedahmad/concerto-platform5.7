@@ -9,6 +9,7 @@ use DateTime;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\ScheduledTaskRepository")
  */
+#[\AllowDynamicProperties]
 class ScheduledTask implements \JsonSerializable {
 
     const TYPE_PLATFORM_UPGRADE = 0;

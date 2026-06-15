@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Service;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+#[\AllowDynamicProperties]
 class PanelService {
 
     public function getLoginErrors($authError, Session $session) {

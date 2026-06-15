@@ -9,6 +9,7 @@ use DateTime;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\MessageRepository")
  */
+#[\AllowDynamicProperties]
 class Message implements \JsonSerializable {
 
     const CATEGORY_SYSTEM = 0;

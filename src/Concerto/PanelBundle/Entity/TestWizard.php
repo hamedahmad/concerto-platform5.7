@@ -12,6 +12,7 @@ use \Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestWizardRepository")
  * @UniqueEntity(fields="name", message="validate.test.wizards.name.unique")
  */
+#[\AllowDynamicProperties]
 class TestWizard extends ATopEntity implements \JsonSerializable {
 
     /**

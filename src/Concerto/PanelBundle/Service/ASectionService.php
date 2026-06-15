@@ -6,6 +6,7 @@ use Concerto\PanelBundle\Repository\AEntityRepository;
 use Concerto\PanelBundle\Security\ObjectVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+#[\AllowDynamicProperties]
 abstract class ASectionService
 {
 

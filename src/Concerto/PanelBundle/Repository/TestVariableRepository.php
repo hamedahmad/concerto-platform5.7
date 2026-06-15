@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * TestVariableRepository
  */
+#[\AllowDynamicProperties]
 class TestVariableRepository extends AEntityRepository {
 
     public function findByTestAndType($test_id, $type) {

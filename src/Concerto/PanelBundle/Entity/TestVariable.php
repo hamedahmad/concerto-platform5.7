@@ -12,6 +12,7 @@ use \Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestVariableRepository")
  * @UniqueEntity(fields={"name","type","test"}, message="validate.test.variables.unique")
  */
+#[\AllowDynamicProperties]
 class TestVariable extends AEntity implements \JsonSerializable {
 
     /**

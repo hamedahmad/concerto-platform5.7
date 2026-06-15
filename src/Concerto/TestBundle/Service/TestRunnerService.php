@@ -5,6 +5,7 @@ namespace Concerto\TestBundle\Service;
 use Psr\Log\LoggerInterface;
 use Concerto\PanelBundle\Service\TestSessionService;
 
+#[\AllowDynamicProperties]
 class TestRunnerService {
 
     private $logger;

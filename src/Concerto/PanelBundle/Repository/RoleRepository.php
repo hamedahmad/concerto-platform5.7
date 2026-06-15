@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * RoleRepository
  */
+#[\AllowDynamicProperties]
 class RoleRepository extends AEntityRepository {
 
     public function findOneByRole($role) {

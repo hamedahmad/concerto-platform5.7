@@ -1,4 +1,6 @@
-<?php error_reporting(E_ALL & ~E_DEPRECATED & ~E_WARNING);
+<?php 
+include("../app/bootstrap_compat.php");
+
 use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__.'/../vendor/autoload.php';

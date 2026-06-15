@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * AdministrationSettingRepository
  */
+#[\AllowDynamicProperties]
 class AdministrationSettingRepository extends AEntityRepository {
 
     public function findKey($key) {

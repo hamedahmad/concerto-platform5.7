@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Concerto\PanelBundle\Entity\User;
 
+#[\AllowDynamicProperties]
 abstract class AEntity {
 
     /**

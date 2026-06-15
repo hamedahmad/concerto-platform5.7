@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
  * @ORM\Table(uniqueConstraints={@UniqueConstraint(name="hash_idx", columns={"hash"})})
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestSessionRepository")
  */
+#[\AllowDynamicProperties]
 class TestSession extends AEntity {
 
     const STATUS_RUNNING = 0;

@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Service;
 use Concerto\PanelBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
+#[\AllowDynamicProperties]
 class ImportService
 {
 

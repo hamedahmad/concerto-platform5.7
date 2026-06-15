@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * TestNodePortRepository
  */
+#[\AllowDynamicProperties]
 class TestNodePortRepository extends AEntityRepository {
 
     public function findOneByNodeAndVariable($node, $variable) {

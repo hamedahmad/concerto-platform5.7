@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestWizardParamRepository")
  * @UniqueEntity(fields={"wizard", "variable"}, message="validate.test.wizards.params.variable.unique")
  */
+#[\AllowDynamicProperties]
 class TestWizardParam extends AEntity implements \JsonSerializable {
 
     /**

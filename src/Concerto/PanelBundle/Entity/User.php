@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(fields="username", message="validate.user.username.unique")
  * @UniqueEntity(fields="email", message="validate.user.email.unique")
  */
+#[\AllowDynamicProperties]
 class User extends ATopEntity implements AdvancedUserInterface, \Serializable, \JsonSerializable, EquatableInterface
 {
 

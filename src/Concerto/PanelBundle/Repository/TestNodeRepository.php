@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Repository;
 /**
  * TestNodeRepository
  */
+#[\AllowDynamicProperties]
 class TestNodeRepository extends AEntityRepository {
 
     public function findByFlowTest($flowTest) {

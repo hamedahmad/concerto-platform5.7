@@ -9,6 +9,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 /**
  * Class responsible for displaying executable information based on configuration.
  */
+#[\AllowDynamicProperties]
 class SystemCheckService {
 
     const DEFAULT_VERSION_FLAG = '--version';

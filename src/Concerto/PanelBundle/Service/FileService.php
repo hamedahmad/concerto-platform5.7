@@ -2,6 +2,7 @@
 
 namespace Concerto\PanelBundle\Service;
 
+#[\AllowDynamicProperties]
 class FileService
 {
     private $environment;

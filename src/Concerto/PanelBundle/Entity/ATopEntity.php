@@ -4,6 +4,7 @@ namespace Concerto\PanelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+#[\AllowDynamicProperties]
 abstract class ATopEntity extends AEntity
 {
 

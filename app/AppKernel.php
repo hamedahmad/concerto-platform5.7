@@ -6,6 +6,11 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    public function getContainerClass() // eingef[gt fuer php8.2
+    {
+        return parent::getContainerClass().'_Compat';
+    }
+
     public function registerBundles()
     {
         $bundles = [

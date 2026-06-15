@@ -11,6 +11,7 @@ use Concerto\PanelBundle\Entity\TestNodePort;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestNodeConnectionRepository")
  */
+#[\AllowDynamicProperties]
 class TestNodeConnection extends AEntity implements \JsonSerializable {
 
     /**

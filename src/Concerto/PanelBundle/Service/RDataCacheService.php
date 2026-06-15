@@ -4,6 +4,7 @@ namespace Concerto\PanelBundle\Service;
 
 use Symfony\Component\Finder\Finder;
 
+#[\AllowDynamicProperties]
 class RDataCacheService {
 
     private $tmp_file = null;

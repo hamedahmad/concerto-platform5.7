@@ -2,6 +2,7 @@
 
 namespace Concerto\PanelBundle\Service;
 
+#[\AllowDynamicProperties]
 class ExportService {
 
     const FORMAT_COMPRESSED = 'compressed';

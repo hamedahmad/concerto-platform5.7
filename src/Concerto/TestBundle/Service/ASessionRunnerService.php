@@ -9,6 +9,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Concerto\PanelBundle\Service\TestSessionService;
 
+#[\AllowDynamicProperties]
 abstract class ASessionRunnerService
 {
     const WRITER_TIMEOUT = 30;

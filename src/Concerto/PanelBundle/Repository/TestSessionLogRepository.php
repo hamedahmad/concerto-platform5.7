@@ -7,6 +7,7 @@ use DateTime;
 /**
  * TestSessionLogRepository
  */
+#[\AllowDynamicProperties]
 class TestSessionLogRepository extends AEntityRepository {
 
     public function deleteByTest($test_id) {

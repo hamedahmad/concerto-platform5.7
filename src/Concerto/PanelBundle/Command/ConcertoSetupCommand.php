@@ -98,6 +98,7 @@ class ConcertoSetupCommand extends Command
             $user = $users[0];
             $output->writeln("default user found");
         }
+        return 0;
     }
 
 }

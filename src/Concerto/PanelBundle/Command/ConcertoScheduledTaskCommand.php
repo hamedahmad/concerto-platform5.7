@@ -143,6 +143,7 @@ abstract class ConcertoScheduledTaskCommand extends Command
 
             $output->writeln("task #" . $task->getId() . " scheduled");
         }
+        return 0;
     }
 
 }

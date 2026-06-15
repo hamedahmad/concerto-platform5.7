@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Service\TestSessionService;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
+#[\AllowDynamicProperties]
 class CheckpointSessionRunnerService extends ASessionRunnerService
 {
     const LOCK_TIMEOUT = 30;

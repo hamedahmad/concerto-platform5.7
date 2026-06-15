@@ -15,6 +15,7 @@ use Concerto\PanelBundle\Security\ObjectVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+#[\AllowDynamicProperties]
 class TestWizardParamService extends ASectionService
 {
 

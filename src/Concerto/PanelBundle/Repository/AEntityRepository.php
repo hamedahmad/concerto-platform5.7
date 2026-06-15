@@ -4,6 +4,7 @@ namespace Concerto\PanelBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
+#[\AllowDynamicProperties]
 abstract class AEntityRepository extends EntityRepository {
 
     public function refresh($entity) {

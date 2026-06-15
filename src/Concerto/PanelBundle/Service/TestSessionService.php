@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 use Concerto\PanelBundle\Entity\TestSessionLog;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+#[\AllowDynamicProperties]
 class TestSessionService
 {
 

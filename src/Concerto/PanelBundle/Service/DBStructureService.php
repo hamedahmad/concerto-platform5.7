@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Service;
 use Concerto\PanelBundle\DAO\DBStructureDAO;
 use Psr\Log\LoggerInterface;
 
+#[\AllowDynamicProperties]
 class DBStructureService
 {
 

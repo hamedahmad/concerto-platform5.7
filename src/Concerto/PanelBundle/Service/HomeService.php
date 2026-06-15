@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Service;
 use Concerto\PanelBundle\Repository\TestRepository;
 use Concerto\PanelBundle\Entity\Test;
 
+#[\AllowDynamicProperties]
 class HomeService {
 
     private $testRepository;

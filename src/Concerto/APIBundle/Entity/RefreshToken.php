@@ -12,6 +12,7 @@ use Concerto\PanelBundle\Entity\User;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Concerto\APIBundle\Repository\RefreshTokenRepository")
  */
+
 class RefreshToken extends BaseRefreshToken
 {
     /**

@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Entity\ScheduledTask;
 /**
  * ScheduledTaskRepository
  */
+#[\AllowDynamicProperties]
 class ScheduledTaskRepository extends AEntityRepository {
 
     public function findAllPending() {

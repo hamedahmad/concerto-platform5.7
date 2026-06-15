@@ -8,6 +8,7 @@ use Concerto\PanelBundle\Entity\User;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+#[\AllowDynamicProperties]
 class TestWizardService extends AExportableSectionService
 {
 

@@ -5,6 +5,7 @@ namespace Concerto\PanelBundle\Service;
 
 use Symfony\Component\Filesystem\Filesystem;
 
+#[\AllowDynamicProperties]
 class MaintenanceService
 {
     private $expirationTime;

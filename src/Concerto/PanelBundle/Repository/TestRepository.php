@@ -7,6 +7,7 @@ use Concerto\PanelBundle\Entity\Test;
 /**
  * TestRepository
  */
+#[\AllowDynamicProperties]
 class TestRepository extends AEntityRepository
 {
 

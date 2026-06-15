@@ -13,6 +13,7 @@ use Symfony\Component\Templating\EngineInterface;
 use Concerto\PanelBundle\Entity\TestSessionLog;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+#[\AllowDynamicProperties]
 class TestRunnerController
 {
     private $templating;

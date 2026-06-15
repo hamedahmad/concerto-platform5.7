@@ -9,6 +9,7 @@ use Concerto\PanelBundle\Entity\Test;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestSessionLogRepository")
  */
+#[\AllowDynamicProperties]
 class TestSessionLog extends AEntity implements \JsonSerializable {
 
     const TYPE_SYSTEM = 2;

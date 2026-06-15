@@ -12,6 +12,7 @@ use \Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table
  * @ORM\Entity(repositoryClass="Concerto\PanelBundle\Repository\TestNodeRepository")
  */
+#[\AllowDynamicProperties]
 class TestNode extends AEntity implements \JsonSerializable {
 
     /**

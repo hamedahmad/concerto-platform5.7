@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Type;
 /**
  * TestSessionRepository
  */
+#[\AllowDynamicProperties]
 class TestSessionRepository extends AEntityRepository
 {
     public function getActiveSessionsCount($idleLimit)

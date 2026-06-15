@@ -22,6 +22,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 use Concerto\APIBundle\Repository\ClientRepository;
 use Symfony\Component\Process\Process;
 
+#[\AllowDynamicProperties]
 class AdministrationService
 {
 

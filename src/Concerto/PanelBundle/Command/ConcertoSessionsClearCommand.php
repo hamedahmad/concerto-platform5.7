@@ -27,6 +27,7 @@ class ConcertoSessionsClearCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->maintenanceService->deleteOldSessions();
+        return 0;
     }
 
 }

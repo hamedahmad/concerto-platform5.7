@@ -8,6 +8,7 @@ use Concerto\PanelBundle\DAO\DBDataDAO;
 use Concerto\PanelBundle\DAO\DBStructureDAO;
 use Symfony\Component\HttpFoundation\Response;
 
+#[\AllowDynamicProperties]
 class DataRecordService
 {
 
