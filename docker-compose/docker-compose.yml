@@ -5,8 +5,13 @@ services:
       container_name: database
       restart: unless-stopped
       environment:
-        - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=concerto
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - MYSQL_DATABASE=${DATABASE_NAME}
+        - DATABASE_HOST=${DATABASE_HOST}
+        - DATABASE_PORT=${DATABASE_PORT}
+        - DATABASE_NAME=${DATABASE_NAME}
+        - DATABASE_USER=${DATABASE_USER}
+        - DATABASE_PASSWORD=${DATABASE_PASSWORD}
         - TZ=Europe/Berlin
       volumes:
         - ./database/mysql:/var/lib/mysql
@@ -23,6 +28,13 @@ services:
       restart: unless-stopped
       depends_on:
         - database
+      environment:
+        DATABASE_HOST: ${DATABASE_HOST}
+        DATABASE_PORT: ${DATABASE_PORT}
+        DATABASE_NAME: ${DATABASE_NAME}
+        DATABASE_USER: ${DATABASE_USER}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+
       volumes:
         - ./logs/concerto/nginx:/var/log/nginx
         - ./logs/concerto/php-fpm:/var/log/php-fpm
