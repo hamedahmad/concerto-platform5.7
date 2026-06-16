@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.0-fpm
 
 LABEL maintainer="Hamed Ahmad <hamed.ahmad@agmail.com>"
 
@@ -29,13 +29,32 @@ RUN apt-get update -y && apt-get install -y \
     xml \
     zip
 
-COPY . /usr/src/concerto/
+
+# copy composer files first
+COPY composer.json composer.lock /usr/src/concerto/
 
 WORKDIR /usr/src/concerto
 
+# install composer binary
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# install dependencies WITHOUT autoload
+RUN composer install --no-dev --no-scripts --no-interaction --no-autoloader
+
+# now copy full project
+COPY . /usr/src/concerto/
+
+# generate autoload AFTER files exist
+RUN composer dump-autoload --optimize
+
 COPY build/php.ini /usr/local/etc/php/php.ini
 COPY build/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY build/nginx/concerto.conf /etc/nginx/sites-available/concerto.conf
+COPY docker-compose/concerto/nginx/sites/concerto.conf /etc/nginx/sites-available/concerto.conf
+
+RUN echo "opcache.enable=0" >> /usr/local/etc/php/conf.d/opcache.ini \
+ && echo "opcache.enable_cli=0" >> /usr/local/etc/php/conf.d/opcache.ini \
+ && echo "opcache.validate_timestamps=1" >> /usr/local/etc/php/conf.d/opcache.ini \
+ && echo "opcache.revalidate_freq=0" >> /usr/local/etc/php/conf.d/opcache.ini
 
 RUN chmod +x /usr/src/concerto/bin/console \
  && rm -f /etc/nginx/sites-enabled/default \
@@ -44,7 +63,12 @@ RUN chmod +x /usr/src/concerto/bin/console \
  RUN mkdir -p /usr/src/concerto/var/cache /usr/src/concerto/var/logs \
  && chown -R www-data:www-data /usr/src/concerto/var \
  && chmod -R 775 /usr/src/concerto/var
-
 EXPOSE 80
 
-CMD ["sh", "-c", "service nginx start && php-fpm -F"]
+COPY startup.sh /usr/src/concerto/startup.sh
+
+RUN chmod +x /usr/src/concerto/startup.sh
+
+WORKDIR /usr/src/concerto
+
+CMD ["/usr/src/concerto/startup.sh"]

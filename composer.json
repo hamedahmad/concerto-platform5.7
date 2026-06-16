@@ -44,6 +44,9 @@
     "platform": {
       "php": "7.4"
     },
+    "conflict": {
+      "jms/serializer": ">=2.0"
+    },
     "sort-packages": true,
     "audit": {
       "block-insecure": false

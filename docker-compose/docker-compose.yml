@@ -1,7 +1,7 @@
-version: '3.0'
 services:
     database:
-      image: mysql:8.4
+      image: mysql:8.0
+      command: --default-authentication-plugin=mysql_native_password
       container_name: database
       restart: unless-stopped
       environment:
@@ -27,6 +27,8 @@ services:
         - ./logs/concerto/nginx:/var/log/nginx
         - ./logs/concerto/php-fpm:/var/log/php-fpm
         - ./logs/concerto/app:/usr/src/concerto/var/logs
+        - ./docker-compose/concerto/nginx/sites:/etc/nginx/sites-available
         - ./logs/concerto/sessions:/usr/src/concerto/src/Concerto/TestBundle/Resources/sessions
+        - ../docker-compose/concerto/nginx/sites/concerto.conf:/etc/nginx/sites-available/concerto.conf
       ports:
         - "8090:80"
