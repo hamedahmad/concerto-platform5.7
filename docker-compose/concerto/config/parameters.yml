@@ -8,4 +8,9 @@ parameters:
     database_path: null
     database_unix_socket: null
     database_version: mysql:8.0
+    router.request_context.base_url: ""
+    router.request_context.http_port: '%env(int:OUTPUT_HTTP_PORT)%'
+    router.request_context.https_port: '%env(int:OUTPUT_HTTPS_PORT)%'
+    router.request_context.host: localhost
+    router.request_context.scheme: http
     locale: de_DE

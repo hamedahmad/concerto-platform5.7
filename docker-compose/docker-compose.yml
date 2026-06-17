@@ -34,7 +34,8 @@ services:
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_USER: ${DATABASE_USER}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-
+        OUTPUT_HTTP_PORT: ${OUTPUT_HTTP_PORT}
+        OUTPUT_HTTPS_PORT: ${OUTPUT_HTTPS_PORT}
       volumes:
         - ./startup.sh:/startup.sh
         - ./frontend:/frontend
