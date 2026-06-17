@@ -37,6 +37,7 @@ services:
 
       volumes:
         - ./startup.sh:/startup.sh
+        - ./frontend:/frontend
         - ./logs/concerto/nginx:/var/log/nginx
         - ./logs/concerto/php-fpm:/var/log/php-fpm
         - ./logs/concerto/app:/usr/src/concerto/var/logs
