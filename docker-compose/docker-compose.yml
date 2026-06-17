@@ -36,11 +36,13 @@ services:
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
 
       volumes:
+        - ./startup.sh:/startup.sh
         - ./logs/concerto/nginx:/var/log/nginx
         - ./logs/concerto/php-fpm:/var/log/php-fpm
         - ./logs/concerto/app:/usr/src/concerto/var/logs
-        - ./docker-compose/concerto/nginx/sites:/etc/nginx/sites-available
+        - ./concerto/nginx/sites:/etc/nginx/sites-available
         - ./logs/concerto/sessions:/usr/src/concerto/src/Concerto/TestBundle/Resources/sessions
-        - ../docker-compose/concerto/nginx/sites/concerto.conf:/etc/nginx/sites-available/concerto.conf
+        - ./concerto/nginx/sites/concerto.conf:/etc/nginx/sites-available/concerto.conf
       ports:
         - "8090:80"
+      command: ["bash", "/startup.sh"]

@@ -65,10 +65,14 @@ RUN chmod +x /usr/src/concerto/bin/console \
  && chmod -R 775 /usr/src/concerto/var
 EXPOSE 80
 
-COPY startup.sh /usr/src/concerto/startup.sh
-
-RUN chmod +x /usr/src/concerto/startup.sh
 
 WORKDIR /usr/src/concerto
+
+RUN apt update && apt install -y \
+    nodejs \
+    npm \
+    rsync \
+ && npm install -g bower
+
 
 CMD ["/usr/src/concerto/startup.sh"]
