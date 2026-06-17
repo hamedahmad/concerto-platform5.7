@@ -16,7 +16,9 @@ security:
           form_login: 
             login_path: login
             check_path: login_check
-            default_target_path: index
+            default_target_path: /admin#/tests
+            always_use_default_target_path: true
+            use_referer: false 
           logout:
             path: /admin/logout
             target: /admin

@@ -80,8 +80,37 @@ echo "✅ Bower assets copied to web/"
 
 BASE=/usr/src/concerto/web/bundles/concertopanel/angularjs/bower_components
 
+##################################jsPlumb############################################
+# ✅ FINAL jsPlumb FIX (create expected legacy path)
+
+# ✅ jsPlumb (COPY FROM HOST frontend FOLDER)
+
+BASE=/usr/src/concerto/web/bundles/concertopanel/angularjs/bower_components
+JS_DIR="$BASE/jsPlumb/dist/js"
+
+echo "Installing jsPlumb from local frontend folder..."
+
+# create destination directory
+mkdir -p "$JS_DIR"
+
+# copy file from mounted frontend folder
+cp /frontend/dom.jsPlumb-1.7.6-min.js \
+   "$JS_DIR/dom.jsPlumb-1.7.6-min.js" || echo "❌ jsPlumb copy failed"
+
+# verify
+ls -l "$JS_DIR"
+
+
+chown -R www-data:www-data /usr/src/concerto/web/bundles
+chmod -R 755 /usr/src/concerto/web/bundles
+
+##################################BASE############################################
+
 echo "=== FINAL VERIFY FILES ==="
 find $BASE -type f -name "*.js" -o -name "*.css"
+
+cd /usr/src/concerto
+
 
 # ✅ additional Concerto tasks
 php bin/console concerto:r:cache || true
@@ -91,6 +120,14 @@ php bin/console concerto:schedule:tick || true
 # ✅ warmup cache
 rm -rf var/cache/*
 php bin/console cache:warmup --env=prod || true
+
+
+mkdir -p var/cache var/logs var/sessions || true
+mkdir -p src/Concerto/PanelBundle/Resources/public/files || true
+mkdir -p src/Concerto/PanelBundle/Resources/import || true
+mkdir -p src/Concerto/TestBundle/Resources/sessions || true
+mkdir -p src/Concerto/TestBundle/Resources/R || true
+
 
 # ✅ fix permissions
 chown -R www-data:www-data var/cache var/logs var/sessions || true

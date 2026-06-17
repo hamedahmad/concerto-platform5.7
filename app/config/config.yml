@@ -19,11 +19,14 @@ framework:
     #translator:      { fallback: %locale% }
     secret:          "%secret%"
     router:
+        strict_requirements: null
+        default_uri: ''
+
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation: { enable_annotations: true }
+    validation: { enable_annotations: true }s
     #serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
