@@ -57,18 +57,17 @@ rm -rf /usr/src/concerto/web/bundles
 mkdir -p /usr/src/concerto/web/bundles
 
 
-# ✅ install Symfony assets (safe)
+# 1. Symfony assets FIRST
 php bin/console assets:install web || true
 
 
-echo "Installing frontend dependencies via Bower..."
+# 2. Bower install
 
 cd /usr/src/concerto/src/Concerto/PanelBundle/Resources/public/angularjs
-
 apt-get update -y && apt-get install -y nodejs npm
 npm install -g bower
-
 bower install --allow-root || true
+
 
 # ✅ IMPORTANT: move files to /web
 mkdir -p /usr/src/concerto/web/bundles/concertopanel/angularjs
@@ -78,7 +77,6 @@ cp -r bower_components \
 
 echo "✅ Bower assets copied to web/"
 
-BASE=/usr/src/concerto/web/bundles/concertopanel/angularjs/bower_components
 
 ##################################jsPlumb############################################
 # ✅ FINAL jsPlumb FIX (create expected legacy path)
@@ -109,7 +107,23 @@ chmod -R 755 /usr/src/concerto/web/bundles
 echo "=== FINAL VERIFY FILES ==="
 find $BASE -type f -name "*.js" -o -name "*.css"
 
+# 3. GO BACK TO ROOT (CRITICAL)
 cd /usr/src/concerto
+
+# 4. COPY TO BOTH BUNDLES (FINAL FIX)
+
+SRC="/usr/src/concerto/src/Concerto/PanelBundle/Resources/public/angularjs/bower_components"
+DST_BASE="/usr/src/concerto/web/bundles"
+
+# panel (already works)
+mkdir -p "$DST_BASE/concertopanel/angularjs"
+cp -r "$SRC" "$DST_BASE/concertopanel/angularjs/"
+
+# ✅ test (THIS IS THE MISSING PART)
+mkdir -p "$DST_BASE/concertotest/angularjs"
+cp -r "$SRC" "$DST_BASE/concertotest/angularjs/"
+
+###############################END JAVASCRIPT ###########################################
 
 
 # ✅ additional Concerto tasks

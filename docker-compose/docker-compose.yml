@@ -45,6 +45,18 @@ services:
         - ./concerto/nginx/sites:/etc/nginx/sites-available
         - ./logs/concerto/sessions:/usr/src/concerto/src/Concerto/TestBundle/Resources/sessions
         - ./concerto/nginx/sites/concerto.conf:/etc/nginx/sites-available/concerto.conf
+        - ./concerto/files:/usr/src/concerto/src/Concerto/PanelBundle/Resources/public/files
+        - ./concerto/config/test_base.html.twig:/usr/src/concerto/app/Resources/views/test_base.html.twig
+        - ./concerto/R:/usr/src/concerto/R
+        - ./concerto/rcache:/usr/src/concerto/src/Concerto/PanelBundle/Resources/public/rcache
+        - ./concerto/favicon.ico:/usr/src/concerto/web/favicon.ico
+        - ./concerto/php/php.ini:/usr/local/etc/php/php.ini
+        - ./concerto/nginx/nginx.conf:/etc/nginx/nginx.conf
+        - ./concerto/nginx/sites/concerto.conf:/etc/nginx/sites-available/concerto.conf
+        - ./logs/concerto/nginx:/var/log/nginx
+        - ./logs/concerto/php-fpm:/var/log/php-fpm
+        - ./logs/concerto/app:/usr/src/concerto/var/logs
+        - ./logs/concerto/sessions:/usr/src/concerto/src/Concerto/TestBundle/Resources/sessions
       ports:
         - "8090:80"
       command: ["bash", "/startup.sh"]
