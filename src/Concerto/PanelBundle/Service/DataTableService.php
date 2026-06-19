@@ -172,7 +172,7 @@ class DataTableService extends AExportableSectionService
             $result = $this->dbDataDao->getFilteredDataResult($object->getName());
             $j = 0;
             echo "[";
-            while ($row = $result->fetch()) {
+            while ($row = $result->dbFetch()) {
                 if ($j > 0) {
                     echo ",";
                 }
@@ -203,7 +203,7 @@ class DataTableService extends AExportableSectionService
             }
             fputcsv($fh, $header, ',');
             $iterator = $this->dbDataDao->getFilteredDataResult($object->getName());
-            while (($row = $iterator->fetch()) !== false) {
+            while (($row = $iterator->dbFetch()) !== false) {
                 fputcsv($fh, $row, ',');
             }
             fclose($fh);

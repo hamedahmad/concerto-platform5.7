@@ -19,7 +19,7 @@ concerto.test.get = function(testId, cache=F, includeSubObjects=F){
   }
 
   testID <- dbEscapeStrings(concerto$connection,toString(testId))
-  result <- dbSendQuery(concerto$connection,sprintf("
+  result <- DBI::dbSendQuery(concerto$connection,sprintf("
   SELECT
   id,
   name,
@@ -29,17 +29,19 @@ concerto.test.get = function(testId, cache=F, includeSubObjects=F){
   FROM Test
   WHERE %s='%s'
   ",idField,testId))
-  response <- fetch(result,n=-1)
+  response <- DBI::dbFetch(result,n=-1)
+  DBI::dbClearResult(result)
 
   if(dim(response)[1] > 0) {
     test = as.list(response)
     if(includeSubObjects && is.null(test$variables)) {
       test$variables <- concerto5:::concerto.test.getVariables(test$id)
       if(test$type == 1) {
-        result = dbSendQuery(concerto$connection, paste0("
+        result = DBI::dbSendQuery(concerto$connection, paste0("
         SELECT test_id FROM TestWizard WHERE id=",dbEscapeStrings(concerto$connection,toString(test$sourceWizard_id)),"
         "))
-        sourceTestId = fetch(result,n=-1)
+        sourceTestId = DBI::dbFetch(result,n=-1)
+        DBI::dbClearResult(result)
         test$sourceTest <- concerto.test.get(sourceTestId, cache, includeSubObjects)
       }
       if(test$type == 2) {

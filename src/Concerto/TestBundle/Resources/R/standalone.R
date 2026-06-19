@@ -1,5 +1,6 @@
 require(concerto5)
-
+library(DBI)
+library(RMariaDB)
 concerto5:::concerto.init(
     connectionParams = fromJSON(commandArgs(TRUE)[1]),
     publicDir = commandArgs(TRUE)[5],

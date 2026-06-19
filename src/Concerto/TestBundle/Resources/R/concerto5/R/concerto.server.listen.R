@@ -1,7 +1,7 @@
 concerto.server.listen = function(){
     concerto.log("listening to server...")
 
-    dbDisconnect(concerto$connection)
+    DBI::dbDisconnect(concerto$connection)
     concerto.log("connections closed")
 
     setTimeLimit(transient = TRUE)

@@ -11,8 +11,9 @@ function(tableId, cache=F){
   }
 
   tableId <- dbEscapeStrings(concerto$connection,toString(tableId))
-  result <- dbSendQuery(concerto$connection,sprintf("SELECT id,name FROM Table WHERE %s='%s'",objField,tableId))
-  response <- fetch(result,n=-1)
+  result <- DBI::dbSendQuery(concerto$connection,sprintf("SELECT id,name FROM Table WHERE %s='%s'",objField,tableId))
+  response <- DBI::dbFetch(result,n=-1)
+  DBI::dbClearResult(result)
 
   if(dim(response)[1] > 0){
     table = as.list(response)

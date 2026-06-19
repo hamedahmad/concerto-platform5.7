@@ -8,23 +8,29 @@ function(sql, params=list(), n=-1){
   result <- NULL
   output <- NULL
   if(toupper(substring(sql, 1, 6)) == "SELECT") {
-    result <- dbSendQuery(concerto$connection, sql)
-    output <- fetch(result, n=n)
+    result <- DBI::dbSendQuery(concerto$connection, sql)
+    output <- DBI::dbFetch(result, n=n)
+    DBI::dbClearResult(result)
   } else if(toupper(substring(sql, 1, 6)) == "INSERT") {
     if(concerto$connectionParams$driver == "pdo_sqlsrv") {
-         result <- dbSendQuery(concerto$connection, paste0(sql,"; SELECT SCOPE_IDENTITY();"))
-         output <- fetch(result, n=1)[1,1]
+         result <- DBI::dbSendQuery(
+              concerto$connection,
+              paste0(sql, "; SELECT LAST_INSERT_ID();")
+          )
+
+          output <- DBI::dbFetch(result, n = 1)[1,1]
+          DBI::dbClearResult(result)
          concerto$sqlsrv_last_insert_id <<- output
     } else {
-        result <- dbSendStatement(concerto$connection, sql)
-        output <- dbGetRowsAffected(result)
+        result <- DBI::dbSendStatement(concerto$connection, sql)
+        output <- DBI::dbGetRowsAffected(result)
     }
   } else {
-    result <- dbSendStatement(concerto$connection, sql)
-    output <- dbGetRowsAffected(result)
+    result <- DBI::dbSendStatement(concerto$connection, sql)
+    output <- DBI::dbGetRowsAffected(result)
   }
 
-  dbClearResult(result)
+  DBI::dbClearResult(result)
 
   return(output)
 }

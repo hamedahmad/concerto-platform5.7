@@ -4,6 +4,8 @@ concerto.server.respond = function(response, data=list()){
     while(T) {
         fh = file("submitter.port", open="rt")
         concerto$session$submitterPort <<- readLines(fh)
+        concerto.log("IN SERVER RESPOND, SUBMITTER PORT:")
+        concerto.log(concerto$session$submitterPort)
         close(fh)
         if(length(concerto$session$submitterPort) == 0) {
            Sys.sleep(0.1)
@@ -15,7 +17,7 @@ concerto.server.respond = function(response, data=list()){
   }
   con = socketConnection(host="localhost", port=concerto$session$submitterPort)
   response = list("source"=SOURCE_PROCESS, "code"=response, "data"=data)
-  writeLines(paste(toJSON(response),"\n",sep=''),con)
+  writeLines(paste(jsonlite::toJSON(response),"\n",sep=''),con)
   close(con)
   concerto.log("responded to server")
 }

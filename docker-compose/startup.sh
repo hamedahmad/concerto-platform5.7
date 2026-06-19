@@ -8,6 +8,7 @@ cd /usr/src/concerto
 chown -R www-data:www-data var
 chmod -R 775 var
 
+
 echo "Waiting for database..."
 
 # ✅ wait for MySQL
@@ -124,6 +125,42 @@ mkdir -p "$DST_BASE/concertotest/angularjs"
 cp -r "$SRC" "$DST_BASE/concertotest/angularjs/"
 
 ###############################END JAVASCRIPT ###########################################
+
+
+echo "Installing local concerto5 R package..."
+
+apt-get update && apt-get install -y \
+    build-essential \
+    libmariadb-dev \
+    libmariadb-dev-compat \
+    mariadb-client \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libxml2-dev
+
+# ✅ install ALL pinned R dependencies (ORDER MATTERS)
+Rscript -e "
+install.packages('https://cran.r-project.org/src/contrib/Archive/jsonlite/jsonlite_1.7.2.tar.gz', repos=NULL, type='source');
+install.packages('https://cran.r-project.org/src/contrib/Archive/glue/glue_1.4.2.tar.gz', repos=NULL, type='source');
+install.packages('https://cran.r-project.org/src/contrib/Archive/vctrs/vctrs_0.3.8.tar.gz', repos=NULL, type='source');
+install.packages('https://cran.r-project.org/src/contrib/Archive/blob/blob_1.2.1.tar.gz', repos=NULL, type='source');
+install.packages('https://cran.r-project.org/src/contrib/Archive/hms/hms_0.5.3.tar.gz', repos=NULL, type='source');
+install.packages(c('digest','DBI'), repos='https://cloud.r-project.org');
+"
+
+# ✅ session package (MUST be BEFORE RMariaDB test + concerto5)
+Rscript -e "install.packages('https://cran.r-project.org/src/contrib/Archive/session/session_1.0.3.tar.gz', repos=NULL, type='source')" || exit 1
+
+# ✅ RMariaDB now builds correctly
+Rscript -e "install.packages('RMariaDB', repos='https://cloud.r-project.org')" || exit 1
+
+# ✅ verify RMariaDB BEFORE proceeding
+Rscript -e "library(RMariaDB)" || exit 1
+
+# ✅ finally install concerto5
+R CMD INSTALL /usr/src/concerto/src/Concerto/TestBundle/Resources/R/concerto5 || exit 1
+
+#########################END CONCERTO5 ###############################
 
 
 # ✅ additional Concerto tasks

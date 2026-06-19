@@ -1,10 +1,12 @@
+library(DBI)
+library(RMariaDB)
 concerto.db.connect = function(driver, username, password, dbname, host, unix_socket, port){
     concerto.log(paste0("connecting with db using ",driver))
     con = NULL
     if (driver == "pdo_mysql") {
-        require("RMySQL")
+        require("RMariaDB")
         con <- dbConnect(
-            MySQL(),
+            RMariaDB::MariaDB(),
             username = username,
             password = password,
             dbname = dbname,
@@ -12,8 +14,9 @@ concerto.db.connect = function(driver, username, password, dbname, host, unix_so
             unix.socket = unix_socket,
             port = as.numeric(port)
         )
-        dbSendQuery(con, statement = 'SET NAMES \"utf8\"')
-        dbSendQuery(con, statement = 'SET SESSION sql_mode = \"\"')
+        DBI::dbExecute(con, 'SET NAMES "utf8"')
+        DBI::dbExecute(con, 'SET SESSION sql_mode = ""')
+
     } else if (driver == "pdo_sqlite") {
         #require("RSQLite")
         stop("pdo_sqlite driver not implemented yet")
@@ -37,12 +40,12 @@ concerto.db.connect = function(driver, username, password, dbname, host, unix_so
     }
 
     if (! existsFunction("dbEscapeStrings")) {
-        dbEscapeStrings <<- function(con, string){
+            dbEscapeStrings <<- function(con, string){
             return(gsub("'", "''", string))
         }
     }
     if (! existsFunction("dbSendStatement")) {
-        dbSendStatement <<- dbSendQuery
+        DBI::dbSendStatement <<- DBI::dbSendQuery
     }
     return(con)
 }

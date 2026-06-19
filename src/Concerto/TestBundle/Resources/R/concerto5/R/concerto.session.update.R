@@ -11,6 +11,6 @@ concerto.session.update = function(){
   dbEscapeStrings(concerto$connection, toString(concerto$session$error)),
   dbEscapeStrings(concerto$connection, toString(concerto$session$id)))
 
-  res = dbSendStatement(concerto$connection, statement = sql)
-  dbClearResult(res)
+  res = DBI::dbSendStatement(concerto$connection, statement = sql)
+  DBI::dbClearResult(res)
 }

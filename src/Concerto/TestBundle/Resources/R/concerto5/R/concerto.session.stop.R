@@ -4,7 +4,7 @@ concerto.session.stop <- function(status = STATUS_STOPPED, response = NULL, data
 
     concerto$session$status <<- status
     concerto5:::concerto.session.update()
-    dbDisconnect(concerto$connection)
+    DBI::dbDisconnect(concerto$connection)
 
     if (!is.null(response)) {
         concerto5:::concerto.server.respond(response, data)

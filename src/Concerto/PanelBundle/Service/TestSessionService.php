@@ -18,7 +18,7 @@ class TestSessionService
     const SOURCE_PANEL_NODE = 0;
     const SOURCE_PROCESS = 1;
     const SOURCE_TEST_NODE = 2;
-    const RESPONSE_VIEW_TEMPLATE = 0;
+    const RESPONSE_VIEW_TEMPLATE = "template";
     const RESPONSE_FINISHED = 1;
     const RESPONSE_SUBMIT = 2;
     const RESPONSE_STOP = 3;

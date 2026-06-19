@@ -11,7 +11,7 @@ concerto5:::concerto.init(
 )
 
 switch(concerto$connectionParams$driver,
-    pdo_mysql = require("RMySQL"),
+    pdo_mysql = require("RMariaDB"),
     pdo_sqlsrv = require("RSQLServer")
 )
 

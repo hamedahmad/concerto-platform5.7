@@ -36,6 +36,8 @@ services:
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
         OUTPUT_HTTP_PORT: ${OUTPUT_HTTP_PORT}
         OUTPUT_HTTPS_PORT: ${OUTPUT_HTTPS_PORT}
+        TZ: Europe/Berlin
+
       volumes:
         - ./startup.sh:/startup.sh
         - ./frontend:/frontend

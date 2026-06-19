@@ -1,6 +1,6 @@
 concerto.session.get = function(sessionHash){
   sessionHash <- dbEscapeStrings(concerto$connection,toString(sessionHash))
-  result <- dbSendQuery(concerto$connection,sprintf("SELECT 
+  result <- DBI::dbSendQuery(concerto$connection,sprintf("SELECT 
                                                     id, 
                                                     test_id,
                                                     timeLimit,
@@ -12,6 +12,7 @@ concerto.session.get = function(sessionHash){
                                                     submitterPort,
                                                     hash
                                                     FROM TestSession WHERE hash='%s'",sessionHash))
-  response <- fetch(result,n=-1)
+  response <- DBI::dbFetch(result,n=-1)
+  DBI::dbClearResult(result)
   return(response)
 }
