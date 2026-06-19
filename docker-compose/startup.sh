@@ -2,6 +2,8 @@
 
 set +e
 
+export TZ=Europe/Berlin
+
 cd /usr/src/concerto
 
 # ✅ fix permissions

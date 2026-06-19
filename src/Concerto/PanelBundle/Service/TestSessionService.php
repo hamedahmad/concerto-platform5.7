@@ -308,9 +308,50 @@ class TestSessionService
         $this->testSessionLogRepository->save($log);
     }
 
+    function flattenSingleElementArrays($data)
+    {
+        if (is_array($data)) {
+            foreach ($data as $key => $value) {
+                $data[$key] = $this->flattenSingleElementArrays($value);
+            }
+
+            if (count($data) === 1 && array_key_exists(0, $data)) {
+                return $data[0];
+            }
+        } elseif (is_object($data)) {
+            foreach ($data as $key => $value) {
+                $data->$key = $this->flattenSingleElementArrays($value);
+            }
+        }
+
+        return $data;
+    }
+
     private function prepareResponse($session_hash, $response)
     {
         $this->logger->info(__CLASS__ . ":" . __FUNCTION__ . " - $session_hash");
+
+        // ✅ FIX: normalize scalar fields
+        if (isset($response["code"]) && is_array($response["code"])) {
+            $response["code"] = $response["code"][0];
+        }
+
+        if (isset($response["source"]) && is_array($response["source"])) {
+            $response["source"] = $response["source"][0];
+        }
+
+        if (isset($response["data"]) && is_array($response["data"])) {
+            $response["data"] = $this->flattenSingleElementArrays($response["data"]);
+        }
+
+        if (isset($response["hash"]) && is_array($response["hash"])) {
+            $response["hash"] = $response["hash"][0];
+        }
+
+        if (isset($response["timeLimit"]) && is_array($response["timeLimit"])) {
+            $response["timeLimit"] = $response["timeLimit"][0];
+        }
+
         if ($session_hash !== null) {
             $session = $this->testSessionRepository->findOneBy(array("hash" => $session_hash));
             if ($session !== null) {
@@ -318,22 +359,27 @@ class TestSessionService
                     $this->saveErrorLog($session, $response["systemError"], TestSessionLog::TYPE_SYSTEM);
                 }
 
+                // ✅ Now switch works again
                 switch ($response["code"]) {
                     case self::RESPONSE_ERROR:
                         if ($session->getError()) {
                             $this->saveErrorLog($session, $session->getError(), TestSessionLog::TYPE_R);
                         }
                         break;
+
                     case self::RESPONSE_VIEW_FINAL_TEMPLATE:
                     case self::RESPONSE_VIEW_TEMPLATE:
                         $response["timeLimit"] = $session->getTimeLimit();
                         break;
+
                     case self::RESPONSE_WORKER:
                         break;
                 }
+
                 $response["hash"] = $session_hash;
             }
         }
+
         return $response;
     }
 
