@@ -1,5 +1,4 @@
 FROM hamedahmad/concerto-platform5.7:latest
-MAINTAINER Hamed Ahmad <hamed.ahmad@agmail.com>
 
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /wait-for-it.sh
 RUN chmod o+x /wait-for-it.sh

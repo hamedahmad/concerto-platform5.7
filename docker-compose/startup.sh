@@ -59,10 +59,8 @@ php bin/console concerto:content:import || true
 rm -rf /usr/src/concerto/web/bundles
 mkdir -p /usr/src/concerto/web/bundles
 
-
 # 1. Symfony assets FIRST
 php bin/console assets:install web || true
-
 
 # 2. Bower install
 
@@ -71,7 +69,6 @@ apt-get update -y && apt-get install -y nodejs npm
 npm install -g bower
 bower install --allow-root || true
 
-
 # ✅ IMPORTANT: move files to /web
 mkdir -p /usr/src/concerto/web/bundles/concertopanel/angularjs
 
@@ -79,7 +76,6 @@ cp -r bower_components \
       /usr/src/concerto/web/bundles/concertopanel/angularjs/
 
 echo "✅ Bower assets copied to web/"
-
 
 ##################################jsPlumb############################################
 # ✅ FINAL jsPlumb FIX (create expected legacy path)
@@ -100,7 +96,6 @@ cp /frontend/dom.jsPlumb-1.7.6-min.js \
 
 # verify
 ls -l "$JS_DIR"
-
 
 chown -R www-data:www-data /usr/src/concerto/web/bundles
 chmod -R 755 /usr/src/concerto/web/bundles
@@ -138,7 +133,8 @@ apt-get update && apt-get install -y \
     mariadb-client \
     libssl-dev \
     libcurl4-openssl-dev \
-    libxml2-dev
+    libxml2-dev \
+    nano
 
 # ✅ install ALL pinned R dependencies (ORDER MATTERS)
 Rscript -e "
@@ -147,6 +143,7 @@ install.packages('https://cran.r-project.org/src/contrib/Archive/glue/glue_1.4.2
 install.packages('https://cran.r-project.org/src/contrib/Archive/vctrs/vctrs_0.3.8.tar.gz', repos=NULL, type='source');
 install.packages('https://cran.r-project.org/src/contrib/Archive/blob/blob_1.2.1.tar.gz', repos=NULL, type='source');
 install.packages('https://cran.r-project.org/src/contrib/Archive/hms/hms_0.5.3.tar.gz', repos=NULL, type='source');
+install.packages('rjson', repos='https://cloud.r-project.org');
 install.packages(c('digest','DBI'), repos='https://cloud.r-project.org');
 "
 
@@ -164,9 +161,16 @@ R CMD INSTALL /usr/src/concerto/src/Concerto/TestBundle/Resources/R/concerto5 ||
 
 #########################END CONCERTO5 ###############################
 
+# ✅ prepare cache folder (CRITICAL FIX)
+echo "Preparing R cache folder..."
+mkdir -p /usr/src/concerto/var/r
 
-# ✅ additional Concerto tasks
-php bin/console concerto:r:cache || true
+chown -R www-data:www-data /usr/src/concerto/var
+chmod -R 775 /usr/src/concerto/var
+
+# ✅ generate R autocompletion cache
+echo "Building R documentation cache..."
+php bin/console concerto:r:cache || echo "❌ R cache failed"
 php bin/console concerto:content:upgrade --init-only || true
 php bin/console concerto:schedule:tick || true
 
@@ -174,13 +178,11 @@ php bin/console concerto:schedule:tick || true
 rm -rf var/cache/*
 php bin/console cache:warmup --env=prod || true
 
-
 mkdir -p var/cache var/logs var/sessions || true
 mkdir -p src/Concerto/PanelBundle/Resources/public/files || true
 mkdir -p src/Concerto/PanelBundle/Resources/import || true
 mkdir -p src/Concerto/TestBundle/Resources/sessions || true
 mkdir -p src/Concerto/TestBundle/Resources/R || true
-
 
 # ✅ fix permissions
 chown -R www-data:www-data var/cache var/logs var/sessions || true
@@ -192,11 +194,13 @@ chown -R www-data:www-data src/Concerto/TestBundle/Resources/R || true
 # ✅ clean R checkpoint
 rm -rf src/Concerto/TestBundle/Resources/R/init_checkpoint/* || true
 
+# ✅ FINAL STEP: build R autocompletion cache
+echo "Building R cache..."
+php bin/console concerto:r:cache || true
 
 # ✅ start services
 echo "Starting services..."
 
 service cron start || cron
 service nginx start
-
 php-fpm -F

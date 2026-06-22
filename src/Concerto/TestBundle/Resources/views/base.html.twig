@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="{{ asset('bundles/concertotest/css/test.css?v=' ~ version) }}" />
         <link rel="stylesheet"
               href="{{ asset('bundles/concertotest/angularjs/bower_components/jquery-ui/themes/base/jquery-ui.min.css?v=' ~ version) }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/concertotest/favicon.ico') }}" />
+        <link href="{{ asset('bundles/concertopanel/files/fontawesome/css/all.css') }}" rel="stylesheet">
+        <link href="{{ asset('undles/concertopanel/files/js/simplebar.css') }}" rel="stylesheet">
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/bower_components/jquery/dist/jquery.min.js?v=' ~ version) }}"></script>
         <script type="text/javascript"
@@ -23,14 +26,14 @@
         <script type="text/javascript" src="{{ asset('bundles/concertopanel/files/js/ifbq_app.js?v=' ~ version) }}"></script>
 
         <script type="text/javascript"
-                src="{{ asset('bundles/concertotest/angularjs/app/js/app.js?v=' ~ version) }}"></script>
+                src="{{ asset('bundles/concertotest/angularjs/app/js/app.js?v=2026' ~ version) }}"></script>
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/app/js/controllers/test_runner_controller.js?v=' ~ version) }}"></script>
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/app/js/directives/concerto_test_directive.js?v=' ~ version) }}"></script>
         <script type="text/javascript"
                 src="{{ asset('bundles/concertotest/angularjs/bower_components/angular-file-upload/angular-file-upload.min.js?v=' ~ version) }}"></script>
-        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/concertotest/favicon.ico') }}" />
+        <script src="{{ asset('bundles/concertopanel/files/js/simplebar.js') }}"></script>
     {% endblock %}
 </head>
 <body ng-app="testRunner" ng-cloak>

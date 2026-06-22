@@ -48,8 +48,17 @@ class ConcertoRCacheCommand extends Command
         }
 
         $process->setTimeout(null);
-        $process->run();
-        $out = explode("\n", $process->getOutput());
+        $out = [];
+
+        $process->run(function ($type, $buffer) use (&$out) {
+            $lines = explode("\n", $buffer);
+            foreach ($lines as $line) {
+                if (!empty(trim($line))) {
+                    $out[] = trim($line);
+                }
+            }
+        });
+
         gc_collect_cycles();
         $this->cacheService->createNewFunctionCacheSet();
 
@@ -60,16 +69,20 @@ class ConcertoRCacheCommand extends Command
                 continue;
             $buffer = trim($line);
             unset($line);
-            $json = substr($buffer, strpos($buffer, "{"));
-            $json = substr($json, 0, strrpos($json, "}") + 1);
-            $obj = json_decode(stripslashes($json));
+            
+            if (!str_starts_with(trim($buffer), "{")) {
+                continue;
+            }
+            $json = trim($buffer);
+            $obj = json_decode($json);
+
             unset($buffer);
             if (!is_object($obj)) {
                 $output->writeln($json);
                 $output->writeln(json_last_error_msg());
                 $output->writeln("SKIPPED!!!");
                 $failed++;
-                break;
+                continue;
             } else {
                 $names = $obj->fun;
                 $lib = $obj->lib;
@@ -84,12 +97,10 @@ class ConcertoRCacheCommand extends Command
                 if (is_array($doc)) {
                     $doc = $doc[0];
                 }
-                foreach ($names as $name) {
-                    if ($this->isDocumentationValid($name, $doc)) {
-                        $successful++;
-                        $this->cacheService->addRFunction($lib, $name, $doc, $obj->args, $obj->defs);
-                        $output->writeln($lib . "::" . $name);
-                    }
+                foreach ($names as $name) {                    
+                    $successful++;
+                    $this->cacheService->addRFunction($lib, $name, $doc, $obj->args, $obj->defs);
+                    $output->writeln($lib . "::" . $name);
                 }
             }
             unset($json);
