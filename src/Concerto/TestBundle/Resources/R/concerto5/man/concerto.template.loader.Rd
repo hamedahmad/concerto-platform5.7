@@ -1,49 +1,40 @@
-\name{concerto.template.loader}
-\alias{concerto.template.loader}
-\title{
-Loader template.
-}
-\description{
-Sets a template that will be shown when the proper templates are loaded.
-}
-\usage{
-concerto.template.loader(templateId=-1, html="", head="", params = list())
-}
-
-\arguments{
-  \item{templateId}{
-Template ID or name.
-}
-
- \item{html}{
-Template html.
-}
-
-\item{head}{
-Template head tag.
-}
-
-  \item{params}{
-Named list with parameters we want to be inserted into template HTML.
-}
-
-}
-\details{
-}
-\references{
-}
-\author{
-Przemyslaw Lis
-}
-\note{
-}
-
-\seealso{
-}
 \examples{
 response1 <- concerto.template.loader(1)
-response2 <- concerto.template.loader(html="<div align="center">loading ... please wait ...</div>")
-}
+response2 <- concerto.template.loader(html="<div class=\"loading-container\">
+  <div class=\"spinner\"></div>
+  <p class=\"loading-text\">Wird geladen... bitte warten</p>
+</div>
 
-\keyword{ template }
-\keyword{ html }
+<style>
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #007bff;
+    border-radius: 50\%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+  }
+
+  .loading-text {
+    color: #555;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  @keyframes spin {
+    0\% { transform: rotate(0deg); }
+    100\% { transform: rotate(360deg); }
+  }
+</style>")
+}

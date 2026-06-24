@@ -13,4 +13,9 @@ parameters:
     router.request_context.https_port: '%env(int:OUTPUT_HTTPS_PORT)%'
     router.request_context.host: localhost
     router.request_context.scheme: http
+    kernel.secret: '%env(DATABASE_SECRET)%'
+
     locale: de_DE
+    # ✅ fix for php8.2
+    database_options:
+        1006: ''

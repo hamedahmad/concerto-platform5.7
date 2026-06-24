@@ -1,7 +1,7 @@
 services:
     database:
       image: mysql:8.0
-      command: --default-authentication-plugin=mysql_native_password
+      command: --ssl=0 --default-authentication-plugin=mysql_native_password
       container_name: database
       restart: unless-stopped
       environment:
@@ -34,6 +34,7 @@ services:
         DATABASE_NAME: ${DATABASE_NAME}
         DATABASE_USER: ${DATABASE_USER}
         DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+        DATABASE_SECRET: ${DATABASE_SECRET}
         OUTPUT_HTTP_PORT: ${OUTPUT_HTTP_PORT}
         OUTPUT_HTTPS_PORT: ${OUTPUT_HTTPS_PORT}
         TZ: Europe/Berlin
